@@ -3,10 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+require('dotenv').config();
 var app = express();
 
 // view engine setup
@@ -18,6 +17,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+// console.log("DB DETAILS ===>", process.env.DB_HOST,process.env.DB_USER, process.env.DB_PASSWORD, process.env.DB_NAME )
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
